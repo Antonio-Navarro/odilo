@@ -1,0 +1,23 @@
+package com.antoniojnavarro.odilo;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.antoniojnavarro.odilo.services.interfaces.ToDoService;
+
+@SpringBootTest
+class OdiloApplicationTests {
+
+	@MockBean
+	private ToDoService toDoService;
+	
+	@Test
+	void contextLoads() {
+		when(this.toDoService.getTitles().thenReturn(new ArrayList<>("{Titulo 1, título 2, título 3"));
+
+	}
+	
+
+}

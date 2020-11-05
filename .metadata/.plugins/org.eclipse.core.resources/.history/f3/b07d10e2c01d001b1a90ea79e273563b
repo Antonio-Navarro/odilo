@@ -1,0 +1,31 @@
+package com.antoniojnavarro.pruebaodilo.tasks;
+
+import java.util.Date;
+import java.util.concurrent.CompletableFuture;
+
+import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+
+import com.antoniojnavarro.pruebaodilo.PruebaodiloApplication;
+
+@Component
+public class TestJob {
+	private static final Logger logger = LoggerFactory.getLogger(PruebaodiloApplication.class);
+
+	@Async("ejecutorProcesos")
+	public CompletableFuture<String> mostrarMensajeTest() {
+		try {
+			String texto = "Test job executed at " + new Date();
+			logger.info(texto);
+			Thread.sleep(1000L);
+
+			return CompletableFuture.completedFuture(texto);
+		} catch (InterruptedException ie) {
+			logger.error("Error in tests", ie.getMessage());
+			return null;
+		}
+	}
+}

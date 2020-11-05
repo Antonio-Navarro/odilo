@@ -1,0 +1,15 @@
+package com.antoniojnavarro.pruebaodilo.models.core;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+public class GenericEntity implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}

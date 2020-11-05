@@ -1,0 +1,20 @@
+package com.antoniojnavarro.pruebaodilo.services;
+
+import java.util.List;
+import java.util.Map;
+
+import com.antoniojnavarro.pruebaodilo.models.ToDo;
+
+public interface ToDoService {
+
+	ToDo create(ToDo item);
+
+	List<ToDo> getAll();
+
+	List<ToDo> getByStatus(boolean isCompleted);
+
+	List<ToDo> getByUserId(int userId);
+
+	Map<Boolean, Long> getStats();
+
+}

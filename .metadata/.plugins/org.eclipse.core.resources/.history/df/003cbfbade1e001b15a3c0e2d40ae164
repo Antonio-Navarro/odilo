@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.controllers.exceptions.ApiError;
+
+public abstract class ApiSubError {
+
+}

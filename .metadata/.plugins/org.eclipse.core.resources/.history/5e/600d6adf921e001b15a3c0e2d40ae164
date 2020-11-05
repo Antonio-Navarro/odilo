@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.models.core;
+
+public class GenericDto {
+
+}

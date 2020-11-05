@@ -1,0 +1,7 @@
+package com.antoniojnavarro.pruebaodilo.services.interfaces;
+
+import com.antoniojnavarro.pruebaodilo.services.commons.ToDoService;
+
+public interface ToDoServicesDefault extends ToDoService{
+
+}

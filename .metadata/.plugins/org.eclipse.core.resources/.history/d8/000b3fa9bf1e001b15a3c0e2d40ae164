@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.controllers.exceptions;
+
+public class CustomResponseEntityExceptionHandler {
+
+}

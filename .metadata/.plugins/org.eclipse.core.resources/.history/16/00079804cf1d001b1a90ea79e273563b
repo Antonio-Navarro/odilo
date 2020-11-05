@@ -1,0 +1,9 @@
+package com.antoniojnavarro.pruebaodilo.repository;
+
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+
+import com.antoniojnavarro.pruebaodilo.models.ToDo;
+
+public class ToDoRepository extends SimpleJpaRepository<ToDo, Integer>{
+
+}

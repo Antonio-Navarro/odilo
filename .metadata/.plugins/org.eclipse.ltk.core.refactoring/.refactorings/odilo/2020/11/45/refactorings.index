@@ -1,0 +1,37 @@
+1604397586288	Delete element
+1604419200193	Rename type 'TestJob'
+1604419703325	Move compilation unit
+1604420456666	Delete element
+1604421584064	Rename type 'ToDoServiceH2'
+1604421606058	Move compilation unit
+1604421689286	Copy package
+1604421758416	Delete element
+1604421788467	Rename package 'com.antoniojnavarro.pruebaodilo.services.commons.interfaces'
+1604425022262	Rename type 'ToDoRepositoryImpl'
+1604425046597	Move compilation unit
+1604480492298	Delete element
+1604482826822	Rename type 'TestTask'
+1604489588012	Rename type 'ToDoResponse'
+1604489592171	Delete element
+1604490024999	Move compilation units
+1604490186133	Delete element
+1604490195352	Copy compilation unit
+1604493286320	Delete element
+1604493424484	Move compilation unit
+1604509846395	Rename type 'CustomResponseEntityExceptionHandler'
+1604510003786	Rename compilation unit 'ExceptionGlobalResponse.java'
+1604511169292	Rename compilation unit 'ExceptionGlobalResponseHandler.java'
+1604514847415	Copy compilation unit
+1604514860258	Copy compilation unit
+1604514879983	Rename type 'ToDoServiceH2DefaultImpl'
+1604515659284	Delete elements
+1604515663661	Move compilation unit
+1604517518763	Rename resource 'application-URL.properties'
+1604521892295	Delete element
+1604522037906	Delete element
+1604522754006	Rename package 'com.antoniojnavarro.pruebaodilo'
+1604577446017	Rename type 'PruebaodiloApplication'
+1604597556846	Rename type 'PruebaodiloApplicationTests'
+1604597571655	Rename package 'com.antoniojnavarro.pruebaodilo'
+1604597681708	Delete element
+1604600320009	Delete element

@@ -1,0 +1,103 @@
+package com.antoniojnavarro.pruebaodilo.controllers;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ScheduledFuture;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor;
+import org.springframework.scheduling.config.ScheduledTask;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+import com.antoniojnavarro.pruebaodilo.services.commons.ToDoService;
+import com.antoniojnavarro.pruebaodilo.tasks.TestTask;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@RestController
+@RequestMapping("/pruebaodilo/tests")
+public class ToDoRestController {
+
+	@Autowired
+	ToDoService toDoService;
+
+	@Value("${initial.delay}")
+	String delay;
+
+	@Autowired
+	TestTask tt;
+
+	private static final String SCHEDULED_TASKS = "scheduledTasks";
+
+	@Autowired
+	private ScheduledAnnotationBeanPostProcessor postProcessor;
+
+//	@Autowired
+//	private ScheduledTask scheduledTasks;
+	
+	@Autowired
+	ObjectMapper objectMapper;
+
+	@GetMapping("/mensaje")
+	public String index() throws InterruptedException {
+		Thread.sleep(10000L);
+
+		return "hola es una prueba" + delay;
+	}
+
+	@GetMapping("/cancelJob")
+	public ResponseEntity<Void> mostrarJobs() throws InterruptedException {
+		Set<ScheduledTask> setTasks = postProcessor.getScheduledTasks();
+		for (ScheduledTask scheduledTask : setTasks) {
+			scheduledTask.cancel();
+		}
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/listScheduler")
+	public String listSchedules() throws JsonProcessingException {
+		Set<ScheduledTask> setTasks = postProcessor.getScheduledTasks();
+		if (!setTasks.isEmpty()) {
+			return objectMapper.writeValueAsString(setTasks);
+		} else {
+			return "No running tasks !";
+		}
+	}
+
+	@GetMapping("/2/user/{userId}")
+	public List<ToDo> getToDoByUserId(@PathVariable("userId") Integer userId) {
+		return toDoService.getByUserId(userId);
+	}
+
+	@GetMapping("/2")
+	public List<ToDo> getAll(@RequestParam(required = false) Boolean estado) {
+
+		if (estado != null) {
+			return toDoService.getByStatus(estado);
+		} else {
+			return toDoService.getAll();
+		}
+	}
+
+	@GetMapping("/2/stats")
+	public Map<Boolean, Long> getStats() {
+		return toDoService.getStats();
+	}
+
+	@GetMapping("/2/titles")
+	public List<String> getTitles() {
+		return toDoService.getTitles();
+	}
+
+}

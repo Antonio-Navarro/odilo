@@ -1,0 +1,18 @@
+package com.antoniojnavarro.pruebaodilo.services.interfaces;
+
+import java.util.List;
+import java.util.Map;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+import com.antoniojnavarro.pruebaodilo.services.core.ServicioCrud;
+
+public interface ToDoService extends ServicioCrud<ToDo, Integer> {
+
+	List<ToDo> getByStatus(boolean isCompleted);
+
+	List<ToDo> getByUserId(int userId);
+
+	Map<Boolean, Long> getStats();
+
+	List<String> getTitles();
+}

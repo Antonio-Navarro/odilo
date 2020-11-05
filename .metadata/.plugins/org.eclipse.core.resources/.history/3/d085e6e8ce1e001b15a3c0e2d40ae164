@@ -1,0 +1,4 @@
+com.antoniojnavarro.app.name=Odilo Spring boot
+spring.profile.active=h2
+initial.delay= 5000
+fixed.delay= 1000

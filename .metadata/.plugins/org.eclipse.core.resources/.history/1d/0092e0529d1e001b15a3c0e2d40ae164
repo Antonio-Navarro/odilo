@@ -1,0 +1,12 @@
+package com.antoniojnavarro.pruebaodilo.models.core;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
+
+@Entity
+@MappedSuperclass
+public interface GenericEntity extends Serializable {
+
+}

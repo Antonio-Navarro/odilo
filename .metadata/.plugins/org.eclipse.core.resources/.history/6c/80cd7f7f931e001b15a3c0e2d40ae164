@@ -1,0 +1,12 @@
+package com.antoniojnavarro.pruebaodilo.models.core;
+
+import java.io.Serializable;
+
+public class GenericDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}

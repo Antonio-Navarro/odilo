@@ -1,0 +1,13 @@
+package com.antoniojnavarro.odilo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class OdiloApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

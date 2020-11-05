@@ -1,0 +1,47 @@
+package com.antoniojnavarro.odilo;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.antoniojnavarro.odilo.repository.ToDoRepository;
+import com.antoniojnavarro.odilo.services.impl.ToDoServiceDefaultImpl;
+import com.antoniojnavarro.odilo.services.interfaces.ToDoService;
+
+@SpringBootTest
+@DataJpaTest
+class OdiloApplicationTests {
+
+	@InjectMocks
+	ToDoService todoServicio = new ToDoServiceDefaultImpl();
+
+	@Mock
+	ToDoRepository repo;
+
+	@Test
+	public void findTitles() {
+		List<String> list = new ArrayList<String>(Arrays.asList("Título 1", "Título 2", "Título 3", "Título 4"));
+
+		when(repo.getTitles()).thenReturn(list);
+
+		List<String> titulosList = todoServicio.getTitles();
+
+		assertEquals(4, titulosList.size());
+		verify(repo, times(1)).getTitles();
+	}
+	@Test
+	void contextLoads() {
+	}
+
+}

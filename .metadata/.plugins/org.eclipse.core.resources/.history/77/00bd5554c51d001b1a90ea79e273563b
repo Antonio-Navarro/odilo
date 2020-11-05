@@ -1,0 +1,51 @@
+package com.antoniojnavarro.pruebaodilo;
+
+import java.util.Date;
+import java.util.concurrent.CompletableFuture;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+
+@SpringBootApplication
+@ComponentScan
+@EnableAsync
+public class PruebaodiloApplication {
+
+    private static final Logger logger = LoggerFactory.getLogger(PruebaodiloApplication.class);
+
+	public static void main(String[] args) {
+		SpringApplication.run(PruebaodiloApplication.class, args);
+		
+	}
+	
+    @Bean(name="ejecutorProcesos")
+    public TaskExecutor workExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(2);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(20);
+        executor.initialize();
+        return executor;
+    }
+
+    @Async("ejecutorProcesos")
+	public void mostrarMensajeTest()  throws InterruptedException {
+		try {
+			logger.info("Entra");
+			String texto = "Test job executed at " + new Date();
+			logger.info(texto);
+			Thread.sleep(1000L);
+		} catch (InterruptedException ie) {
+			logger.error("Error in tests", ie.getMessage());
+		}
+	}
+}

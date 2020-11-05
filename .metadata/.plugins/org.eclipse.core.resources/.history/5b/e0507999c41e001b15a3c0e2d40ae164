@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.controllers.exceptions.ApiError;
+
+public class ApiValidationError extends ApiSubError {
+
+}

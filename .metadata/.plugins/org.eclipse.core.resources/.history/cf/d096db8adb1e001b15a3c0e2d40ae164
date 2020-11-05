@@ -1,0 +1,5 @@
+com.antoniojnavarro.app.name=Odilo Spring boot extrayendo datos desde una URL
+spring.jpa.hibernate.ddl-auto=none
+url.datos =https://jsonplaceholder.typicode.com/todos
+initial.delay= 5000
+fixed.delay= 1000

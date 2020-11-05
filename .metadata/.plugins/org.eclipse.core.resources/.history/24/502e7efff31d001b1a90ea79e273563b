@@ -1,0 +1,41 @@
+package com.antoniojnavarro.pruebaodilo.services.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+import com.antoniojnavarro.pruebaodilo.services.interfaces.ToDoServicesH2;
+
+public class ToDoServiceH2Impl implements ToDoServicesH2{
+
+	@Override
+	public ToDo create(ToDo item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ToDo> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ToDo> getByStatus(boolean isCompleted) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ToDo> getByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<Boolean, Long> getStats() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

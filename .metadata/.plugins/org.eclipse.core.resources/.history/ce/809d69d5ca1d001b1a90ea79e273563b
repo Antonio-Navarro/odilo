@@ -1,0 +1,27 @@
+package com.antoniojnavarro.pruebaodilo.tasks;
+
+import java.util.Date;
+import java.util.concurrent.CompletableFuture;
+
+import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.antoniojnavarro.pruebaodilo.PruebaodiloApplication;
+
+@Service
+public class TestJob {
+	private static final Logger logger = LoggerFactory.getLogger(PruebaodiloApplication.class);
+
+	@Async("ejecutorProcesos")
+	@Scheduled(initialDelayString = "{initial.delay}", fixedDelayString = "{fixed.delay}")
+	public void mostrarMensajeTest() {
+		String texto = "Test job 1 executed at " + new Date();
+		logger.info(texto);
+
+	}
+}

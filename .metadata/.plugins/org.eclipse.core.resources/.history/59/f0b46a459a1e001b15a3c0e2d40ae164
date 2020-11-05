@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.controllers;
+
+public interface BaseRestController {
+
+}

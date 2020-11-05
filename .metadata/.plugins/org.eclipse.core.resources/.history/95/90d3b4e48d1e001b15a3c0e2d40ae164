@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.models.dto;
+
+public class ToDoRequest {
+
+}

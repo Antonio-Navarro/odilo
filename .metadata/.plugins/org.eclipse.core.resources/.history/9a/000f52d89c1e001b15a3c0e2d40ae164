@@ -1,0 +1,11 @@
+package com.antoniojnavarro.pruebaodilo.repository.core;
+
+import java.io.Serializable;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.antoniojnavarro.pruebaodilo.models.core.GenericEntity;
+
+public interface BaseRepository<T extends GenericEntity, ID extends Serializable> extends JpaRepository<T, ID> {
+
+}

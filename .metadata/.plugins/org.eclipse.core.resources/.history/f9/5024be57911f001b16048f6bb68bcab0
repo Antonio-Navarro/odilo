@@ -1,0 +1,19 @@
+package com.antoniojnavarro.odilo;
+
+import javax.annotation.security.RunAs;
+
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+@RunWith(MockitoJUnitRunner.class)
+public class ToDoServicioTest {
+
+	
+	@InjectMocks
+	ServicioProducto srvProducto = new ServicioProductoImpl();
+
+	@Mock
+	ProductoRepository repo;
+}

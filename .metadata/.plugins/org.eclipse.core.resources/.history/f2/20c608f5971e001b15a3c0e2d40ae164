@@ -1,0 +1,11 @@
+package com.antoniojnavarro.pruebaodilo.services.core;
+
+import java.io.Serializable;
+import com.antoniojnavarro.pruebaodilo.models.core.GenericEntity;
+
+public interface ServicioCrud<T extends GenericEntity, ID extends Serializable> extends Serializable {
+
+	
+	//AQUÍ AÑADIRIAMOS TODAS LAS ESPECIFICACIONES DE LOS METODOS COMUNES PARA TODOS LOS SERVICIOS COMO, findById, findAll, save, delete, exists
+	//pero por no perder tiempo no se han añadido para no tener que implementarlos.
+}

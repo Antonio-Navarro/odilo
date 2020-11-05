@@ -1,0 +1,11 @@
+package com.antoniojnavarro.pruebaodilo.repository.core.impl;
+
+import java.io.Serializable;
+
+import com.antoniojnavarro.pruebaodilo.models.core.GenericEntity;
+import com.antoniojnavarro.pruebaodilo.repository.core.BaseRepository;
+
+public class BaseRepositoryImpl<T extends GenericEntity, ID extends Serializable>
+		implements BaseRepository<GenericEntity, Serializable> {
+
+}

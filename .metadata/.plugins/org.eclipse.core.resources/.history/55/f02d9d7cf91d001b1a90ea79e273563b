@@ -1,0 +1,21 @@
+package com.antoniojnavarro.pruebaodilo.repository;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+
+public interface ToDoRepository extends JpaRepository<ToDo, Integer> {
+	
+	List<ToDo> findByCompleted(Boolean completed);
+	List<ToDo> findByUserId(Integer userId);
+	
+	@Query("SELECT t.completed, count(*) FROM ToDo t group by t.completed").
+	List<Map<Boolean, Long>> getStats();
+	
+	@Query("select t.title from ToDo t order by length(t.title) asc")
+	List<String> getTitles();
+}

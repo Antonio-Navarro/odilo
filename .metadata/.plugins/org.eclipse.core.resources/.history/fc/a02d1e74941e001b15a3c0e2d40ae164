@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.repository.core.impl;
+
+public class BaseRepositoryImpl {
+
+}

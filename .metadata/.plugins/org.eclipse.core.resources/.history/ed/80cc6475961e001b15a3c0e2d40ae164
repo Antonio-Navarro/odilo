@@ -1,0 +1,46 @@
+
+
+public interface ServicioCrudDto<DTO extends GenericDto, TEntity extends GenericEntity, F extends SearchFilter, ID extends Serializable>
+		extends Serializable {
+
+	
+
+	default DTO entityToDto(TEntity entity) throws ServicioException {
+		if (entity == null) {
+			return null;
+		}
+		return this.parseEntityToDto(entity);
+	}
+
+	default List<DTO> entitiesToDtos(List<TEntity> entities) throws ServicioException {
+		return entities == null ? new ArrayList<DTO>()
+				: entities.stream().map(this::entityToDto).collect(Collectors.toList());
+	}
+
+	default TEntity dtoToEntity(DTO dto) throws ServicioException {
+		if (dto == null) {
+			return null;
+		}
+		return this.parseDtoToEntity(dto);
+	}
+
+	default List<TEntity> dtosToEntities(List<DTO> dtos) throws ServicioException {
+		return dtos == null ? new ArrayList<TEntity>()
+				: dtos.stream().map(this::dtoToEntity).collect(Collectors.toList());
+	}
+
+	default PaginationResult<DTO> paginationResultEntitiesToDtos(PaginationResult<TEntity> paginationResultEntities)
+			throws ServicioException {
+		PaginationResult<DTO> paginationResultDto = new PaginationResult<DTO>();
+		return paginationResultDto.pageNumber(paginationResultEntities.getPageNumber())
+				.pageSize(paginationResultEntities.getPageSize()).totalResult(paginationResultEntities.getTotalResult())
+				.offset(paginationResultEntities.getOffset())
+				.result(this.entitiesToDtos(paginationResultEntities.getResult()));
+
+	}
+
+	// Parsers de entitades a DTO y viceversa (Método plantilla)
+	DTO parseEntityToDto(TEntity entity) throws ServicioException;
+
+	TEntity parseDtoToEntity(DTO dto) throws ServicioException;
+}

@@ -1,0 +1,47 @@
+package com.antoniojnavarro.pruebaodilo.tasks;
+
+import java.util.Date;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ScheduledFuture;
+
+import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.antoniojnavarro.pruebaodilo.PruebaodiloApplication;
+
+@Service
+
+public class TestTask {
+	private static final Logger logger = LoggerFactory.getLogger(PruebaodiloApplication.class);
+
+	@Autowired
+	TaskScheduler taskScheduler;
+
+	ScheduledFuture<?> scheduledFuture;
+
+	@Value("${fixed.delay}")
+	private long fixedDelay;
+
+	@Scheduled(initialDelayString = "${initial.delay}", fixedDelayString = "${fixed.delay}")
+	public void mostrarMensajeTest() {
+		scheduledFuture = taskScheduler.schedule(pintarFecha(), new Date());
+
+	}
+
+	private Runnable pintarFecha() {
+		return () -> logger.info("Test job 1 executed at " + new Date());
+	}
+
+	public void cancelar() {
+		scheduledFuture.cancel(true);
+
+	}
+}

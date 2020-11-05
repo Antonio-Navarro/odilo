@@ -1,0 +1,15 @@
+package com.antoniojnavarro.pruebaodilo.tasks;
+
+import java.util.concurrent.ScheduledFuture;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+@Component
+@SessionScope
+public class JobExecution {
+	
+	
+	ScheduledFuture<?> scheduledFuture;
+
+
+}

@@ -1,0 +1,5 @@
+com.antoniojnavarro.app.name=Odilo Spring boot
+
+
+initial.delay= 5000
+fixed.delay= 1000

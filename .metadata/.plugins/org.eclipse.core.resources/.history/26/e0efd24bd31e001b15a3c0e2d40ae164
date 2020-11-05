@@ -1,0 +1,56 @@
+package com.antoniojnavarro.pruebaodilo.services.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+import com.antoniojnavarro.pruebaodilo.repository.ToDoRepository;
+import com.antoniojnavarro.pruebaodilo.services.interfaces.ToDoService;
+
+@Service
+@Profile({ "url", "default" })
+public class ToDoServiceDefaultImpl implements ToDoService {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Autowired
+	List<ToDo> datosUrl;
+
+	@Override
+	public ToDo create(ToDo item) {
+		return null;
+	}
+
+	@Override
+	public List<ToDo> getAll() {
+		System.err.println("hola");
+		return datosUrl;
+	}
+
+	@Override
+	public List<ToDo> getByStatus(boolean isCompleted) {
+		return null;
+	}
+
+	@Override
+	public List<ToDo> getByUserId(int userId) {
+		return null;
+	}
+
+	@Override
+	public Map<Boolean, Long> getStats() {
+		return null;
+	}
+
+	@Override
+	public List<String> getTitles() {
+		return null;
+	}
+
+}

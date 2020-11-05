@@ -1,0 +1,57 @@
+package com.antoniojnavarro.pruebaodilo.controllers;
+
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor;
+import org.springframework.scheduling.config.ScheduledTask;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.antoniojnavarro.pruebaodilo.tasks.TareasProgramadas;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JobRestController {
+
+	@Value("${initial.delay}")
+	String delay;
+
+	@Autowired
+	TareasProgramadas tareasProgramadas;
+
+	@Autowired
+	private ScheduledAnnotationBeanPostProcessor postProcessor;
+
+	@Autowired
+	ObjectMapper objectMapper;
+
+	@GetMapping("/mensaje")
+	public String index() throws InterruptedException {
+		Thread.sleep(10000L);
+
+		return "hola es una prueba" + delay;
+	}
+
+	@GetMapping("/pararTareas")
+	public String mostrarJobs() throws InterruptedException {
+		postProcessor.postProcessBeforeDestruction(tareasProgramadas, "tareasProgramadas");
+		return "Tareas paradas con exito";
+	}
+
+	@GetMapping(value = "/arrancarTareas")
+	public String startSchedule() {
+		postProcessor.postProcessAfterInitialization(tareasProgramadas, "tareasProgramadas");
+		return "Tareas arrancadas con exito";
+	}
+
+	@GetMapping(value = "/listarTareasEjecucion")
+	public String listSchedules() throws JsonProcessingException {
+		Set<ScheduledTask> setTasks = postProcessor.getScheduledTasks();
+		if (!setTasks.isEmpty()) {
+			return objectMapper.writeValueAsString(setTasks);
+		} else {
+			return "!Actualmente no hay tareas en ejecución!";
+		}
+	}
+}

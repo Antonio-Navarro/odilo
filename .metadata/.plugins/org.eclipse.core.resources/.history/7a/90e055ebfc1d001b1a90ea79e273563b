@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.repository.impl;
+
+public class ToDoRepositoryCustomImpl {
+
+}

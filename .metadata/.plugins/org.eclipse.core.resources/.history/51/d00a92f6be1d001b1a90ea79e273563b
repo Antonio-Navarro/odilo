@@ -1,0 +1,13 @@
+package com.antoniojnavarro.pruebaodilo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PruebaodiloApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PruebaodiloApplication.class, args);
+	}
+
+}

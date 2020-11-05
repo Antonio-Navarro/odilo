@@ -1,0 +1,5 @@
+
+INSERT INTO todos (id, userId, title, completed) VALUES
+  (1, 1, 'Pantalla de login', true),
+  (2, 2', 'Pantalla de registro', true),
+  (3, 1, 'Pantalla dashboard inicial', false);

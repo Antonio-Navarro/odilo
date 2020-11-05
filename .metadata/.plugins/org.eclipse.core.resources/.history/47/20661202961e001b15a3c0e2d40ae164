@@ -1,0 +1,7 @@
+package com.antoniojnavarro.pruebaodilo.repository;
+
+import java.util.Map;
+
+public interface ToDoRepositoryCustom{
+	Map<Boolean, Long> getStats();
+}

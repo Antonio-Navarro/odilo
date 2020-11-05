@@ -1,0 +1,10 @@
+package com.antoniojnavarro.pruebaodilo.repository;
+
+import java.util.Map;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+import com.antoniojnavarro.pruebaodilo.repository.core.BaseRepository;
+
+public interface ToDoRepositoryCustom extends BaseRepository<ToDo, Integer> {
+	Map<Boolean, Long> getStats();
+}

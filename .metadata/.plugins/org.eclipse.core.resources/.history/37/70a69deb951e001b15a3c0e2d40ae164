@@ -1,0 +1,29 @@
+package com.antoniojnavarro.pruebaodilo.repository.core.impl;
+
+import java.io.Serializable;
+
+
+import javax.persistence.EntityManager;
+
+
+import org.springframework.data.jpa.repository.support.JpaEntityInformation;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+
+import com.antoniojnavarro.pruebaodilo.models.core.GenericEntity;
+import com.antoniojnavarro.pruebaodilo.repository.core.BaseRepository;
+
+public class BaseRepositoryImpl<T extends GenericEntity, ID extends Serializable> extends SimpleJpaRepository<T, ID>
+		implements BaseRepository<T, ID> {
+
+	private final EntityManager em;
+	private JpaEntityInformation<T, ?> entityInformation;
+
+	public BaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager em) {
+		super(entityInformation, em);
+		this.em = em;
+		this.entityInformation = entityInformation;
+	}
+	
+	//EN ESTA CLASE PODRIAMOS CREAR METODOS GENERICOS PARA ACCESO A BASE DE DATOS, ACTUALMENTE ESTA VACIA POR QUE NO SE HA CREADO NINGÚN METODO, PERO IRÍAN BUSQUEDAS GENERICAS POR FILTROS.
+
+}

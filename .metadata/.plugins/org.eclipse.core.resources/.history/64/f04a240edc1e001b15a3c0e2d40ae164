@@ -1,0 +1,56 @@
+package com.antoniojnavarro.pruebaodilo;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
+import com.antoniojnavarro.pruebaodilo.models.*;
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+
+@SpringBootApplication
+@EnableScheduling
+@EnableAsync
+public class PruebaodiloApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PruebaodiloApplication.class, args);
+
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		ModelMapper modelMapper = new ModelMapper();
+		return modelMapper;
+	}
+
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		return builder.build();
+	}
+
+	
+	//PARA CARGAR LOS DATOS CUANDO SE USA EL PERFIL POR URL EN VEZ DE LA BASE DE DATOS H2
+	@Profile({ "url", "default" })
+	@Bean
+	public List<ToDo> datosUrl(RestTemplate restTemplate,
+			@Value("${url.datos:https://jsonplaceholder.typicode.com/todos}") String urlDatos) throws Exception {
+
+		ResponseEntity<List<ToDo>> rateResponse = restTemplate.exchange(urlDatos, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<ToDo>>() {
+				});
+		List<ToDo> rates = rateResponse.getBody();
+		return rates;
+	}
+}

@@ -1,0 +1,49 @@
+package com.antoniojnavarro.pruebaodilo.services.core;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.antoniojnavarro.pruebaodilo.models.core.GenericDto;
+import com.antoniojnavarro.pruebaodilo.models.core.GenericEntity;
+import com.antoniojnavarro.pruebaodilo.services.exceptions.ServicioException;
+
+public interface ServicioCrudDTO<DTO extends GenericDto, TEntity extends GenericEntity, ID extends Serializable>
+		extends Serializable {
+
+	// AQUÍ AÑADIRIAMOS TODAS LAS ESPECIFICACIONES DE LOS METODOS COMUNES PARA TODOS
+	// LOS SERVICIOS COMO, findById, findAll, save, delete, exists
+	// PERO POR NO PERDER TIEMPO SOLO SE HAN AÑADIDOS LOS PARSEOS ENTRE ENTITIES Y
+	// DTOS
+//	/QUE SE TENDRÁN QUE HACER PARA ENCAPSULAR EL MODELO DE DATOS EN LOS SERVICIOS REST 
+
+	default DTO entityToDto(TEntity entity) throws ServicioException {
+		if (entity == null) {
+			return null;
+		}
+		return this.parseEntityToDto(entity);
+	}
+
+	default List<DTO> entitiesToDtos(List<TEntity> entities) throws ServicioException {
+		return entities == null ? new ArrayList<DTO>()
+				: entities.stream().map(this::entityToDto).collect(Collectors.toList());
+	}
+
+	default TEntity dtoToEntity(DTO dto) throws RuntimeException {
+		if (dto == null) {
+			return null;
+		}
+		return this.parseDtoToEntity(dto);
+	}
+
+	default List<TEntity> dtosToEntities(List<DTO> dtos) throws ServicioException {
+		return dtos == null ? new ArrayList<TEntity>()
+				: dtos.stream().map(this::dtoToEntity).collect(Collectors.toList());
+	}
+
+	// Parsers de entitades a DTO y viceversa (Método plantilla),
+	DTO parseEntityToDto(TEntity entity) throws ServicioException;
+
+	TEntity parseDtoToEntity(DTO dto) throws ServicioException;
+}

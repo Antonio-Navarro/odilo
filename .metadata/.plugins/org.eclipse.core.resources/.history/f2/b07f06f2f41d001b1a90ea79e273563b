@@ -1,0 +1,47 @@
+package com.antoniojnavarro.pruebaodilo.services.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.antoniojnavarro.pruebaodilo.models.entities.ToDo;
+import com.antoniojnavarro.pruebaodilo.repository.ToDoRepository;
+import com.antoniojnavarro.pruebaodilo.services.interfaces.ToDoServicesH2;
+
+public class ToDoServiceH2Impl implements ToDoServicesH2 {
+
+	@Autowired
+	ToDoRepository toDoRepository;
+
+	@Override
+	public ToDo create(ToDo item) {
+		return toDoRepository.saveAndFlush(item);
+	}
+
+	@Override
+	public List<ToDo> getAll() {
+		return toDoRepository.findAll();
+	}
+
+	@Override
+	public List<ToDo> getByStatus(boolean isCompleted) {
+		return toDoRepository.findByCompleted(isCompleted);
+	}
+
+	@Override
+	public List<ToDo> getByUserId(int userId) {
+		return toDoRepository.findByUserId(userId);
+	}
+
+	@Override
+	public Map<Boolean, Long> getStats() {
+		return toDoRepository.getStats();
+	}
+
+	@Override
+	public List<ToDo> getTitles() {
+		return toDoRepository.getTitles();
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.services.exceptions;
+
+public class ServicioException extends RuntimeException {
+
+}

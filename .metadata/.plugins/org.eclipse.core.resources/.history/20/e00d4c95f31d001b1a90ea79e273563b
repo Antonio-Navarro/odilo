@@ -1,0 +1,5 @@
+package com.antoniojnavarro.pruebaodilo.services.commons.interfaces.copy;
+
+public interface ToDoServicesH2 {
+
+}
